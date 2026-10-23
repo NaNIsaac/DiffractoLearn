@@ -7,3 +7,15 @@ An early-stage repository. What it holds now (2026-10-23):
 - `pyproject.toml`: dependencies for planned machine-learning work (PyTorch from the CUDA 12.6 index, scikit-learn, ase, refnx, hydra-core, mlcroissant) and no package code yet.
 
 The GitHub description and `pyproject.toml` say "Machine learning tools for X-ray reflectivity analysis", while the only data code here reads powder diffraction data and the reflectivity work lives in [ReflectoLearn](https://github.com/NaNIsaac/ReflectoLearn). Which of the two this repository is for is not stated anywhere in it.
+
+## The notebook's data format
+
+`notebooks/test.ipynb` expects `binxrd.db` in the working directory, an [ASE database](https://wiki.fysik.dtu.dk/ase/ase/db/db.html) with one row per crystal structure and three string-valued key-value pairs per row:
+
+| key | content after parsing |
+| --- | --- |
+| `latt_dis` | list of lattice spacings |
+| `intensity` | list of peak intensities |
+| `tager` | `(space group number, crystal system)` |
+
+The strings are parsed with `ast.literal_eval`, which accepts Python literals only. An earlier revision used `eval`, which runs any expression stored in a database field; a database from an untrusted source could execute code on the reader's machine. `literal_eval` raises `ValueError` on such a field instead. The database itself is not in the repository, so the notebook has not been run on the real data; it was checked against a synthetic one-row database and a row carrying a hostile expression.
