@@ -8,6 +8,14 @@ An early-stage project for machine learning on powder X-ray diffraction (XRD) pa
 
 X-ray reflectivity (XRR) fitting is out of scope and is developed separately in [ReflectoLearn](https://github.com/NaNIsaac/ReflectoLearn). The current notebook is exploratory; there is not yet a trained powder-XRD classifier or phase-fraction predictor.
 
+## Current versus planned workflow
+
+![The project currently parses an externally supplied diffraction database; training and phase quantification are goals, not shipped features.](docs/media/readme-overview.svg)
+
+The project currently parses an externally supplied diffraction database; training and phase quantification are goals, not shipped features.
+
+To understand the present code, open `notebooks/test.ipynb`; it expects a local `binxrd.db`. The model block in this figure is deliberately **planned**, not an implemented pipeline.
+
 ## The notebook's data format
 
 `notebooks/test.ipynb` expects `binxrd.db` in the working directory, an [ASE database](https://wiki.fysik.dtu.dk/ase/ase/db/db.html) with one row per crystal structure and three string-valued key-value pairs per row:
