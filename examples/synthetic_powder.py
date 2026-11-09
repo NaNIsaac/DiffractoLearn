@@ -5,7 +5,7 @@ This is NOT a structure-factor, line-profile, or trained-ML model.
 """
 import argparse
 import csv
-from math import asin, degrees, exp, isfinite, pi, sqrt
+from math import asin, degrees, exp, isfinite, log, sqrt
 from pathlib import Path
 
 
@@ -45,7 +45,7 @@ def synthetic_pattern(*, lattice_a=4.0, wavelength=1.5406, fwhm=0.2,
     if (two_theta_max-two_theta_min)/step > 200_000:
         raise ValueError("scan exceeds maximum of 200000 intervals")
     peaks = peak_positions(lattice_a, wavelength)
-    sigma = fwhm / (2 * sqrt(2 * __import__("math").log(2)))
+    sigma = fwhm / (2 * sqrt(2 * log(2)))
     length = int((two_theta_max - two_theta_min) / step) + 1
     angles = [two_theta_min + i * step for i in range(length)]
     intensities = [sum(exp(-0.5 * ((angle - center)/sigma)**2) for center, _ in peaks)
