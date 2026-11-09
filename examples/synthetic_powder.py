@@ -23,8 +23,8 @@ def peak_positions(lattice_a=4.0, wavelength=1.5406, max_index=3):
     shells = {}
     for h in range(max_index + 1):
         for k in range(max_index + 1):
-            for l in range(max_index + 1):
-                n = h*h + k*k + l*l
+            for ell in range(max_index + 1):
+                n = h*h + k*k + ell*ell
                 if not n:
                     continue
                 sine = wavelength * sqrt(n) / (2 * lattice_a)
@@ -64,7 +64,7 @@ def main():
     with args.output.open("w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["two_theta_deg", "relative_intensity"])
-        writer.writerows(zip(angles, intensities))
+        writer.writerows(zip(angles, intensities, strict=True))
     print(f"Wrote {len(angles)} points to {args.output}")
 
 
