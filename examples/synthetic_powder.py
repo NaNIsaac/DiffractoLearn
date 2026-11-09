@@ -31,12 +31,10 @@ def peak_positions(lattice_a=4.0, wavelength=1.5406, max_index=3):
                 if sine >= 1:
                     continue
                 shells[n] = shells.get(n, 0) + 1
-    return [(2 * degrees(asin(wavelength * sqrt(n) / (2 * lattice_a))), count)
-            for n, count in sorted(shells.items())]
+    return [(2 * degrees(asin(wavelength * sqrt(n) / (2 * lattice_a))), count) for n, count in sorted(shells.items())]
 
 
-def synthetic_pattern(*, lattice_a=4.0, wavelength=1.5406, fwhm=0.2,
-                      two_theta_min=10.0, two_theta_max=80.0, step=0.05):
+def synthetic_pattern(*, lattice_a=4.0, wavelength=1.5406, fwhm=0.2, two_theta_min=10.0, two_theta_max=80.0, step=0.05):
     """Return angle and dimensionless intensity arrays, no instrument model."""
     if not all(isfinite(x) for x in (fwhm, two_theta_min, two_theta_max, step)):
         raise ValueError("scan parameters must be finite")
@@ -48,8 +46,7 @@ def synthetic_pattern(*, lattice_a=4.0, wavelength=1.5406, fwhm=0.2,
     sigma = fwhm / (2 * sqrt(2 * log(2)))
     length = int((two_theta_max - two_theta_min) / step) + 1
     angles = [two_theta_min + i * step for i in range(length)]
-    intensities = [sum(exp(-0.5 * ((angle - center)/sigma)**2) for center, _ in peaks)
-                   for angle in angles]
+    intensities = [sum(exp(-0.5 * ((angle - center) / sigma) ** 2) for center, _ in peaks) for angle in angles]
     return angles, intensities
 
 
