@@ -3,6 +3,7 @@
 Geometric simple-cubic Bragg positions and Gaussian display peaks only.
 This is NOT a structure-factor, line-profile, or trained-ML model.
 """
+
 import argparse
 import csv
 from math import asin, degrees, exp, isfinite, log, sqrt
