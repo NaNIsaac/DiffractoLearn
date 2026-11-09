@@ -24,7 +24,7 @@ def peak_positions(lattice_a=4.0, wavelength=1.5406, max_index=3):
     for h in range(max_index + 1):
         for k in range(max_index + 1):
             for ell in range(max_index + 1):
-                n = h*h + k*k + ell*ell
+                n = h * h + k * k + ell * ell
                 if not n:
                     continue
                 sine = wavelength * sqrt(n) / (2 * lattice_a)
@@ -42,7 +42,7 @@ def synthetic_pattern(*, lattice_a=4.0, wavelength=1.5406, fwhm=0.2,
         raise ValueError("scan parameters must be finite")
     if fwhm <= 0 or step <= 0 or not 0 <= two_theta_min < two_theta_max <= 180:
         raise ValueError("invalid scan limits, step or FWHM")
-    if (two_theta_max-two_theta_min)/step > 200_000:
+    if (two_theta_max - two_theta_min) / step > 200_000:
         raise ValueError("scan exceeds maximum of 200000 intervals")
     peaks = peak_positions(lattice_a, wavelength)
     sigma = fwhm / (2 * sqrt(2 * log(2)))
