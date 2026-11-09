@@ -1,8 +1,8 @@
 """Offline smoke tests for the deterministic XRD example."""
 import importlib.util
-from pathlib import Path
 import math
 import unittest
+from pathlib import Path
 
 FILE = Path(__file__).resolve().parents[1] / "examples" / "synthetic_powder.py"
 spec = importlib.util.spec_from_file_location("synthetic_powder", FILE)
