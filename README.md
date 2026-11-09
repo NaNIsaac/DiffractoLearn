@@ -1,12 +1,22 @@
 # DiffractoLearn
 
-An early-stage project for machine learning on powder X-ray diffraction (XRD) patterns, with crystal-phase identification and phase-fraction estimation as longer-term goals. What the repository currently contains (2026-10-23):
+An early-stage project for machine learning on powder X-ray diffraction (XRD) patterns, with crystal-phase identification and phase-fraction estimation as longer-term goals. What the repository currently contains (2026-11-09):
 
 - `main.py` and `scripts/main.py`: placeholder entry points that only print a greeting.
+- `examples/synthetic_powder.py`: runnable standard-library geometric powder-XRD toy baseline, with offline tests; no private database required.
 - `notebooks/test.ipynb`: one cell that reads a local ASE database `binxrd.db` (not in the repository) and, per structure, its element list, lattice spacings, peak intensities, space group and crystal system: a powder X-ray diffraction dataset.
 - `pyproject.toml`: dependencies for planned machine-learning work (PyTorch from the CUDA 12.6 index, scikit-learn, ase, refnx, hydra-core, mlcroissant) and no package code yet.
 
 X-ray reflectivity (XRR) fitting is out of scope and is developed separately in [ReflectoLearn](https://github.com/NaNIsaac/ReflectoLearn). The current notebook is exploratory; there is not yet a trained powder-XRD classifier or phase-fraction predictor.
+
+## Reproducible baseline (no external data)
+
+```sh
+python examples/synthetic_powder.py --output synthetic_xrd.csv
+python -m unittest discover -s tests -v
+```
+
+The example writes a deterministic synthetic CSV of simple-cubic Bragg peak positions with Gaussian display peaks. It is **not** a physical diffraction-intensity calculation, phase classifier or phase-fraction estimator. See [assumptions and limitations](docs/synthetic-baseline.md).
 
 ## Current versus planned workflow
 
