@@ -1,4 +1,5 @@
 """Offline smoke tests for the deterministic XRD example."""
+
 import importlib.util
 import math
 import unittest
@@ -30,8 +31,10 @@ class SyntheticPatternTests(unittest.TestCase):
 
     def test_parameter_validation(self):
         invalid = [
-            {"lattice_a": 0}, {"wavelength": float("nan")},
-            {"fwhm": 0}, {"step": -1},
+            {"lattice_a": 0},
+            {"wavelength": float("nan")},
+            {"fwhm": 0},
+            {"step": -1},
             {"two_theta_min": 90, "two_theta_max": 80},
         ]
         for args in invalid:
