@@ -28,7 +28,7 @@ To understand the present code, open `notebooks/test.ipynb`; it expects a local 
 
 ## The notebook's data format
 
-`notebooks/test.ipynb` expects `binxrd.db` in the working directory, an [ASE database](https://wiki.fysik.dtu.dk/ase/ase/db/db.html) with one row per crystal structure and three string-valued key-value pairs per row:
+`notebooks/test.ipynb` expects `binxrd.db` in the working directory, an [ASE database](https://docs.ase-lib.org/ase/db/db.html) with one row per crystal structure and three string-valued key-value pairs per row:
 
 | key | content after parsing |
 | --- | --- |
